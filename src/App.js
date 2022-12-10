@@ -5,19 +5,27 @@ function App() {
   const [tableData, setTableData] = useState([]);
   const [clickedData, setClickedData] = useState({});
 
+  console.log(clickedData);
+  useEffect(() => {
+    if (clickedData.status === 'TRUE') {
+      const makeRed = window.document.getElementById(clickedData.id).style = 'background-color: red; color:white'
+    }
+    else if (clickedData.status === 'FALSE') {
+      const makeGreen = window.document.getElementById(clickedData.id).style = 'background-color: green; color:white'
+    }
+  }, [clickedData])
 
   useEffect(() => {
     fetch('data.json')
       .then(res => res.json())
       .then(data => setTableData(data))
   }, [])
-  console.log(clickedData.status);
 
   return (
     <div>
       <h2 className='text-3xl font-semibold text-center mt-4 mb-2'>Data Table</h2>
-      <div className="overflow-x-auto mx-2">
-        <table className="table w-full">
+      <div className="table-container">
+        <table>
           <thead>
             <tr>
               <th>SL.</th>
@@ -29,7 +37,7 @@ function App() {
           </thead>
           <tbody>
             {
-              tableData.map(data => <tr onClick={() => setClickedData(data)} className='cursor-pointer' key={data.id}>
+              tableData.map(data => <tr onClick={() => setClickedData(data)} className={`cursor-pointer`} key={data.id} id={data.id}>
                 <th>{data.id}</th>
                 <td>{data.first_name}</td>
                 <td>{data.last_name}</td>
