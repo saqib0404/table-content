@@ -1,24 +1,12 @@
-
-
 table {
   width: 100%;
-  overflow: auto;
+  overflow-x: scroll;
 }
 
 th,
 td {
   text-align: center;
   padding: 4px 8px;
-  border: 1px solid black;
+  border: 1px solid gray;
   border-collapse: collapse;
 }
-
-
-/* @media only screen and (max-width: 600px) {
-
-  table,
-  th,
-  td {
-    padding: 2px 4px;
-  }
-} */
